@@ -23,7 +23,7 @@ public class Test {
 //        (color1='red1' OR color1='blue') and (pric1e=2000 OR mode1l='hyundai' );
 //        (color='red' OR color='blue') and (price=2000 OR model='hyundai' );
 
-        String iql = "(COMMENT=\"red1\" OR 'color1'=\"blue\") and ('pric1e'=2000 and 'mode1l'=\"hyundai\") and '计划部署时间' > sum(1,100) and '类型' in [ \"线上Bug\"] and '创建时间' >= '2024-01-01' and '创建时间' <= '2024-03-31' and '所属产品' = \"code\" and 'xxx' not in [\"a\",\"b\",\"c\"]  and 'QA引入原因分析' in ( \"无法复现\") and '状态' != \"已取消\"";
+        String iql = "(COMMENT=\"red1\" OR 'color1'=\"blue\") and ('pric1e'=2000 and 'mode1l'=\"hyundai\") and '计划部署时间' > sum(1,100) and '类型' in [ \"线上Bug\"] and '创建时间' >= '2024-01-01' and '创建时间' <= '2024-03-31' and '所属产品' = \"code\" and 'xxx' not in [\"a\",\"b\",\"c\"]  and 'QA引入原因分析' in ( \"无法复现\") and '状态' != \"已取消\" order by \"orderField\" desc, \"orderField2\" desc,\"orderField3\"";
         CharStream input = CharStreams.fromString(iql);
 
         // Create a lexer instance
@@ -48,17 +48,17 @@ public class Test {
         System.out.println(queryDSL);
 
         listener.getFields().stream().map(f -> f + " ").forEach(System.out::print);
-
+        listener.getSort().stream().map(f -> f + " ").forEach(System.out::print);
         // Create the TreeViewer
-        TreeViewer viewer = new TreeViewer(Arrays.asList(parser.getRuleNames()), tree);
-        viewer.setScale(1.5); // Scale a bit
-
-        // Show the TreeViewer in a JFrame
-        JFrame frame = new JFrame("Parse Tree");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(viewer);
-        frame.setSize(800, 600);
-        frame.setVisible(true);
+//        TreeViewer viewer = new TreeViewer(Arrays.asList(parser.getRuleNames()), tree);
+//        viewer.setScale(1.5); // Scale a bit
+//
+//        // Show the TreeViewer in a JFrame
+//        JFrame frame = new JFrame("Parse Tree");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.add(viewer);
+//        frame.setSize(800, 600);
+//        frame.setVisible(true);
 
     }
 }
